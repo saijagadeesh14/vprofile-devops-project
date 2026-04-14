@@ -11,8 +11,7 @@ pipeline {
             steps {
                 sh '''
                 docker run --rm \
-                -u root \
-                -v $(pwd):/app \
+                -v $PWD:/app \
                 -w /app \
                 maven:3.9-eclipse-temurin-8 \
                 mvn clean package -DskipTests
@@ -20,9 +19,15 @@ pipeline {
             }
         }
 
+        stage('Prepare WAR') {
+            steps {
+                sh 'cp target/*.war vprofile.war'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t saijagadeesh14/vprofile-app:${IMAGE_TAG} ."
+                sh 'docker build -t saijagadeesh14/vprofile-app:${IMAGE_TAG} .'
             }
         }
 
