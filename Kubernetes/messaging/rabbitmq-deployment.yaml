@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbit
+  template:
+    metadata:
+      labels:
+        app: rabbit
+    spec:
+      containers:
+      - name: rabbit
+        image: rabbitmq:3-management
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: test
+        - name: RABBITMQ_DEFAULT_PASS
+          value: test
+        ports:
+        - containerPort: 5672
+        - containerPort: 15672
+
+
