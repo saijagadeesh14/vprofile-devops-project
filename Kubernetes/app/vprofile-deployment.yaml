@@ -17,31 +17,6 @@ spec:
         image: saijagadeesh14/vprofile-app:v1
         ports:
         - containerPort: 8080
-        env:
-        - name: DB_HOST
-          value: mariadb
-        - name: DB_PORT
-          value: "3306"
-        - name: DB_NAME
-          value: accounts
-        - name: DB_USER
-          value: admin
-        - name: DB_PASSWORD
-          value: admin123
-
-        - name: MEMCACHED_ACTIVE_HOST
-          value: memcached
-        - name: MEMCACHED_ACTIVE_PORT
-          value: "11211"
-
-        - name: RABBITMQ_ADDRESS
-          value: rabbit
-        - name: RABBITMQ_PORT
-          value: "5672"
-        - name: RABBITMQ_USERNAME
-          value: test
-        - name: RABBITMQ_PASSWORD
-          value: test
         readinessProbe:
           httpGet:
             path: /login
